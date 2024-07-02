@@ -1,4 +1,5 @@
 import { Button } from "./components/ui/button";
+import './styles/index.scss'
 
 export function App() {
 
