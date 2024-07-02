@@ -1,13 +1,9 @@
-import { Button } from "./components/ui/button";
+import { Router } from './router'
 import './styles/index.scss'
 
 export function App() {
 
-  return (
-    <>
-      <Button variant="primary">fhh</Button>
-    </>
-  )
+  return (<Router />)
 }
 
 
