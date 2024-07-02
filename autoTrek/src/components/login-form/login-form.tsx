@@ -32,7 +32,15 @@ export const LoginForm = () => {
   })
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} style={{
+      display: 'flex',
+      flexDirection: 'column',
+      width: '400px',
+      height: '400px',
+      gap: '50px',
+      margin: '0 auto',
+      marginTop: '150px',
+    }}>
       <TextField
         {...register('email')}
         errorMessage={errors?.email?.message}
