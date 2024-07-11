@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { AutoTrek, Item } from '../autoTrek.api'
 
 export const autoTrekApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -7,21 +8,14 @@ export const autoTrekApi = createApi({
   }),
   endpoints: builder => {
     return {
-      getAutoTrek: builder.query<unknown, unknown | void>({
+      login: builder.query<AutoTrek, unknown | void>({
         query: arg => ({
           method: 'GET',
           params: arg ?? undefined,
-          url: 'api/devices',
+          url: '/api/devices',
         }),
       }),
-      postAutoTrek: builder.mutation<void, unknown>({
-        query: args => ({
-          body: args,
-          method: 'POST',
-          url: `api/devices`,
-        }),
-      }),
-      deliteAutoTrek: builder.mutation<void, unknown>({
+      postAutoTrek: builder.mutation<Item, unknown>({
         query: args => ({
           body: args,
           method: 'POST',
@@ -41,7 +35,7 @@ export const autoTrekApi = createApi({
 })
 
 export const {
-  useGetAutoTrekQuery,
+  useLoginQuery,
   usePostAutoTrekMutation,
-  useDeliteAutoTrekMutation,
+  useDeleteAutoTrekMutation,
 } = autoTrekApi
