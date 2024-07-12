@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { TextField } from '../ui/textField'
 import { Button } from '../ui/button'
+import { useLoginQuery } from '../../api/services/autoTrek.services'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -23,7 +24,13 @@ export const LoginForm = () => {
   const onSubmit = handleSubmit(() => {
     console.log('sad');
   })
+  const [login, { }] = useLoginQuery()
 
+  const handleLogin = (data: FormValues) => {
+    login(data)
+      .unwrap()
+      .then(() => router.navigate('/'))
+  }
   return (
     <form onSubmit={onSubmit} style={{
       display: 'flex',
@@ -46,7 +53,7 @@ export const LoginForm = () => {
         name={'password'}
         errorMessage={errors?.password?.message}
       />
-      <Button type={'submit'}>Submit</Button>
+      <Button onClick={handleLogin} type={'submit'}>Submit</Button>
     </form >
   )
 }

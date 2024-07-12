@@ -8,21 +8,20 @@ export const autoTrekApi = createApi({
   }),
   endpoints: builder => {
     return {
-      login: builder.query<AutoTrek, unknown | void>({
-        query: arg => ({
+      login: builder.query<AutoTrek, void>({
+        query: () => ({
           method: 'GET',
-          params: arg ?? undefined,
           url: '/api/devices',
         }),
       }),
-      postAutoTrek: builder.mutation<Item, unknown>({
+      postAutoTrek: builder.mutation<Item, void>({
         query: args => ({
           body: args,
           method: 'POST',
           url: `api/devices`,
         }),
       }),
-      deleteAutoTrek: builder.mutation<unknown, { id: number }>({
+      deleteAutoTrek: builder.mutation<void, { id: number }>({
         query: ({ id }) => ({
           method: 'DELETE',
           url: `/api/devices/${id}`,
