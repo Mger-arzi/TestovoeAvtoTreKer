@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { autoTrekApi } from './autoTrek.services'
+import { autoTrekApi } from './autoTrek.service'
 import { appReducer } from '../../app/app-slice'
 
 

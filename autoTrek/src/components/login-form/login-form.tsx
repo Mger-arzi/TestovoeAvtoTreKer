@@ -4,7 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { TextField } from '../ui/textField'
 import { Button } from '../ui/button'
-import { useLoginQuery } from '../../api/services/autoTrek.services'
+import { useLoginQuery } from '../../api/services/autoTrek.service'
+import { QueryHooks } from '../../../node_modules/@reduxjs/toolkit/dist/query/react/buildHooks'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -24,7 +25,7 @@ export const LoginForm = () => {
   const onSubmit = handleSubmit(() => {
     console.log('sad');
   })
-  const [login, { }] = useLoginQuery()
+  // const [login, { }] = useLoginQuery() 
 
   const handleLogin = (data: FormValues) => {
     login(data)

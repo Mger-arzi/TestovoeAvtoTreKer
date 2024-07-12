@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import { DeviceListPage } from '../page/DeviceListPage'
 import { LoginForm } from '../components/login-form/login-form'
-import { useLoginQuery } from '../api/services/autoTrek.services'
+import { useLoginQuery } from '../api/services/autoTrek.service'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -32,23 +32,13 @@ export const privateRoutes: RouteObject[] = [
 //   },
 
 // ])
-const router = createBrowserRouter([
-  {
-    children: [
-      {
-        children: privateRoutes,
-        element: <PrivateRoutes />,
-      },
-      ...publicRoutes,
-    ],
-  },
-])
+
 export function Router() {
   return <RouterProvider router={router} />
 }
 
 function PrivateRoutes() {
-  const { isError, isLoading } = useLoginQuery()
+  // const { isError, isLoading } = useLoginQuery()
 
   if (isLoading) {
     return <div>...loading</div>
@@ -59,3 +49,14 @@ function PrivateRoutes() {
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
 
+export const router = createBrowserRouter([
+  {
+    children: [
+      {
+        children: privateRoutes,
+        element: <PrivateRoutes />,
+      },
+      ...publicRoutes,
+    ],
+  },
+])
