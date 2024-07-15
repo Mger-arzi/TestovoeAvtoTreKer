@@ -21,17 +21,6 @@ export const privateRoutes: RouteObject[] = [
     path: '/',
   },
 ]
-// const router = createBrowserRouter([
-//   {
-//     element: <LoginForm />,
-//     path: '/login',
-//   },
-//   {
-//     path: '/',
-//     element: <DeviceListPage />,
-//   },
-
-// ])
 
 
 

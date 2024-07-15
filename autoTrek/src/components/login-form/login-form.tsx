@@ -23,7 +23,6 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   })
   const { data } = useLoginQuery()
-  console.log(useLoginQuery());
   const onSubmit = handleSubmit(() => {
     console.log(data);
     console.log('sad');
