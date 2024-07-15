@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { TextField } from '../ui/textField'
 import { Button } from '../ui/button'
 import { useLoginQuery } from '../../api/services/autoTrek.service'
-import { QueryHooks } from '../../../node_modules/@reduxjs/toolkit/dist/query/react/buildHooks'
+import { router } from '../../router/router-config'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -22,16 +22,22 @@ export const LoginForm = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
+  const { data } = useLoginQuery()
+  console.log(useLoginQuery());
   const onSubmit = handleSubmit(() => {
+    console.log(data);
     console.log('sad');
+    router.navigate('/')
   })
-  // const [login, { }] = useLoginQuery() 
+  // const { data } = useLoginQuery()
+  // console.log(useLoginQuery());
+  // console.log(data);
 
-  const handleLogin = (data: FormValues) => {
-    login(data)
-      .unwrap()
-      .then(() => router.navigate('/'))
-  }
+  // const handleLogin = () => {
+  //   data?
+  //     .unwrap()
+  //     .then(() => router.navigate('/'))
+  // }
   return (
     <form onSubmit={onSubmit} style={{
       display: 'flex',
@@ -54,7 +60,7 @@ export const LoginForm = () => {
         name={'password'}
         errorMessage={errors?.password?.message}
       />
-      <Button onClick={handleLogin} type={'submit'}>Submit</Button>
+      <Button type={'submit'}>Submit</Button>
     </form >
   )
 }

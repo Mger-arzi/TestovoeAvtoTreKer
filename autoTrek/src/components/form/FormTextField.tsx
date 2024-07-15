@@ -1,32 +1,32 @@
-// import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-// import { TextField, TextFieldProps } from '../ui/textField'
+import { TextField, TextFieldProps } from '../ui/textField'
 
 
-// type Props<T extends FieldValues> = Omit<TextFieldProps, ' placeholder' | 'errorMessage'> &
-//   UseControllerProps<T>
+type Props<T extends FieldValues> = Omit<TextFieldProps, ' placeholder' | 'errorMessage'> &
+  UseControllerProps<T>
 
-// export const FormTextField = <T extends FieldValues>({
-//   control,
-//   defaultValue,
-//   disabled,
-//   name,
-//   rules,
-//   shouldUnregister,
-//   ...restProps
-// }: Props<T>) => {
-//   const {
-//     fieldState: { error },
-//   } = useController({ control, defaultValue, disabled, name, rules, shouldUnregister })
+export const FormTextField = <T extends FieldValues>({
+  control,
+  defaultValue,
+  disabled,
+  name,
+  rules,
+  shouldUnregister,
+  ...restProps
+}: Props<T>) => {
+  const {
+    fieldState: { error },
+  } = useController({ control, defaultValue, disabled, name, rules, shouldUnregister })
 
-//   console.log(error)
+  console.log(error)
 
-//   return (
-//     <TextField
-//       {...restProps}
-//       errorMessage={error?.message}
-//       placeholder={'password '}
-//       type={'password'}
-//     />
-//   )
-// }
+  return (
+    <TextField
+      {...restProps}
+      errorMessage={error?.message}
+      placeholder={'password '}
+      type={'password'}
+    />
+  )
+}

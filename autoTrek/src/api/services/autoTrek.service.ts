@@ -1,23 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { AutoTrek, Item } from '../autoTrek.api'
-
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-// import type { Pokemon } from './types'
-
-// // Define a service using a base URL and expected endpoints
-// export const pokemonApi = createApi({
-//   reducerPath: 'pokemonApi',
-//   baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
-//   endpoints: (builder) => ({
-//     getPokemonByName: builder.query<Pokemon, string>({
-//       query: (name) => `pokemon/${name}`,
-//     }),
-//   }),
-// })
-
-// // Export hooks for usage in functional components, which are
-// // auto-generated based on the defined endpoints
-// export const { useGetPokemonByNameQuery } = pokemonApi
+import { FormValues } from '@/components/login-form/login-form'
 
 
 export const autoTrekApi = createApi({
@@ -33,7 +16,7 @@ export const autoTrekApi = createApi({
         url: '/api/devices',
       }),
     }),
-    postAutoTrek: builder.mutation<Item, void>({
+    postAutoTrek: builder.mutation<Item, FormValues>({
       query: args => ({
         body: args,
         method: 'POST',

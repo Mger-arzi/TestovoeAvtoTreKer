@@ -27,13 +27,12 @@ export const DeviceListPage = () => {
 
   const [search, setSearch] = useState('')
   const [itemsPerPage, setItemPerPage] = useState(10)
-  const { data, error, isLoading } = useLoginQuery()
-  console.log(data)
+  const { isLoading, data, isError } = useLoginQuery()
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div style={{ fontSize: '56px' }}>Loading...</div>
   }
-  if (error) {
-    return <div>Error: {JSON.stringify(error)}</div>
+  if (isError) {
+    return <div>Error: {JSON.stringify(isError)}</div>
   }
   return (
     <>
@@ -72,7 +71,7 @@ export const DeviceListPage = () => {
               })}
             </tbody>
           </table>
-          <select onChange={e => setItemPerPage(+e.currentTarget.value)} value={itemsPerPage}>
+          <select style={{ backgroundColor: 'gray' }} onChange={e => setItemPerPage(+e.currentTarget.value)} value={itemsPerPage}>
             <option value={1}>1</option>
             <option value={2}>2</option>
           </select>

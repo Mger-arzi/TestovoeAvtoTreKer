@@ -33,18 +33,17 @@ export const privateRoutes: RouteObject[] = [
 
 // ])
 
-export function Router() {
-  return <RouterProvider router={router} />
-}
+
 
 function PrivateRoutes() {
-  // const { isError, isLoading } = useLoginQuery()
+  const { isError, isLoading } = useLoginQuery()
 
   if (isLoading) {
     return <div>...loading</div>
   }
-
   const isAuthenticated = !isError
+
+
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
@@ -60,3 +59,6 @@ export const router = createBrowserRouter([
     ],
   },
 ])
+export function Router() {
+  return <RouterProvider router={router} />
+}
