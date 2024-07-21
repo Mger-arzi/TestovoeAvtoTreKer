@@ -1,45 +1,24 @@
-import { ThemeProvider, createTheme } from "@mui/material";
-import { MyAppBar } from "../AppBar/AppBar";
 import { useLoginQuery } from "../api/services/autoTrek.service";
 import { useState } from "react";
 import { TextField } from "../components/ui/textField";
 
 export const DeviceListPage = () => {
 
-  type ThemeMode = 'dark' | 'light'
-  const [themeMode, setThemeMode] = useState<ThemeMode>('light')
-  const theme = createTheme({
-    palette: {
-      mode: themeMode === 'light' ? 'light' : 'dark',
-      primary: {
-        main: '#266cad',
-      },
-      secondary: {
-        main: '#7f3136',
-      },
-
-    },
-  })
-  const changeModeHandler = () => {
-    setThemeMode(themeMode === 'light' ? 'dark' : 'light')
-  }
-
 
   const [search, setSearch] = useState('')
   const [itemsPerPage, setItemPerPage] = useState(10)
   const { isLoading, data, isError } = useLoginQuery()
   if (isLoading) {
-    return <div style={{ fontSize: '56px' }}>Loading...</div>
+    return <div>Loading...</div>
   }
   if (isError) {
     return <div>Error: {JSON.stringify(isError)}</div>
   }
   return (
     <>
-      <div>
-        <ThemeProvider theme={theme}><MyAppBar changeModeHandler={changeModeHandler} /></ThemeProvider>
+      <h2>
         DeviceListPage
-      </div>
+      </h2>
       <div style={{ margin: '0 auto', padding: '1.5rem', width: '1024px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           <TextField

@@ -17,6 +17,7 @@ export const FormTextField = <T extends FieldValues>({
 }: Props<T>) => {
   const {
     fieldState: { error },
+    field: { onChange },
   } = useController({ control, defaultValue, disabled, name, rules, shouldUnregister })
 
   console.log(error)
@@ -27,6 +28,8 @@ export const FormTextField = <T extends FieldValues>({
       errorMessage={error?.message}
       placeholder={'password '}
       type={'password'}
+      name={name}
+      onChange={onChange}
     />
   )
 }

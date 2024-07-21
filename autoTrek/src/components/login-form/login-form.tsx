@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { TextField } from '../ui/textField'
 import { Button } from '../ui/button'
-import { useLoginQuery } from '../../api/services/autoTrek.service'
-import { router } from '../../router/router-config'
+import { usePostAutoTrekMutation } from '../../api/services/autoTrek.service'
+import { useNavigate } from 'react-router-dom'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -15,6 +15,8 @@ const loginSchema = z.object({
 export type FormValues = z.infer<typeof loginSchema>
 
 export const LoginForm = () => {
+  const navigate = useNavigate()
+
   const {
     formState: { errors },
     handleSubmit,
@@ -22,13 +24,21 @@ export const LoginForm = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
-  const { data } = useLoginQuery()
-  const onSubmit = handleSubmit(() => {
-    console.log(data);
-    console.log('sad');
-    router.navigate('/')
-  })
   // const { data } = useLoginQuery()
+  // const onSubmit = handleSubmit(() => {
+  //   console.log(data);
+  //   router.navigate('/')
+  // })
+  // const onSubmit: SubmitHandler<FormValues> = (data) => {
+  //   console.log(data); // Выводим объект с ошибками
+  // router.navigate('/')
+  const [login] = usePostAutoTrekMutation()
+  const handleLogin = (data: FormValues) => {
+    login(data)
+      .unwrap()
+      .finally(() => navigate('/'))
+
+  }
   // console.log(useLoginQuery());
   // console.log(data);
 
@@ -38,7 +48,7 @@ export const LoginForm = () => {
   //     .then(() => router.navigate('/'))
   // }
   return (
-    <form onSubmit={onSubmit} style={{
+    <form onSubmit={handleSubmit(handleLogin)} style={{
       display: 'flex',
       flexDirection: 'column',
       width: '400px',
@@ -63,3 +73,4 @@ export const LoginForm = () => {
     </form >
   )
 }
+

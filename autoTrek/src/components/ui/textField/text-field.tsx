@@ -23,6 +23,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       onChange,
       onValueChange,
       placeholder,
+      name,
       ...restProps
     },
     ref
@@ -54,6 +55,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             placeholder={placeholder}
             ref={ref}
             {...restProps}
+            name={name}
           />
         </div>
         {errorMessage && (
