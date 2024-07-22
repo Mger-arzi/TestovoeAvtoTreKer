@@ -28,7 +28,7 @@ function PrivateRoutes() {
   const { isError, isLoading } = useLoginQuery()
 
   if (isLoading) {
-    return <div>...loading</div>
+    return <div style={{ fontSize: '54px' }}>...loading</div>
   }
   const isAuthenticated = !isError
 
