@@ -10,10 +10,7 @@ export function App() {
     palette: {
       mode: themeMode,
       primary: {
-        main: '#266cad',
-      },
-      secondary: {
-        main: '#7f3136',
+        main: '#e3dcdc',
       },
     },
   });
@@ -27,16 +24,3 @@ export function App() {
       <Router />
     </ThemeProvider>)
 }
-
-
-// +========================================
-// const App = () => {
- 
-
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <MyAppBar changeModeHandler={changeModeHandler} />
-//       <DeviceListPage />
-//     </ThemeProvider>
-//   );
-// }

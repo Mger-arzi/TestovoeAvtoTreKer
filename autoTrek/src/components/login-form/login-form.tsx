@@ -6,6 +6,7 @@ import { TextField } from '../ui/textField'
 import { Button } from '../ui/button'
 import { usePostAutoTrekMutation } from '../../api/services/autoTrek.service'
 import { useNavigate } from 'react-router-dom'
+import { FormTextField } from '../form/FormTextField'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -21,6 +22,7 @@ export const LoginForm = () => {
     formState: { errors },
     handleSubmit,
     register,
+    control,
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
@@ -37,8 +39,9 @@ export const LoginForm = () => {
     login(data)
       .unwrap()
       .finally(() => navigate('/'))
-
+    console.log(data);
   }
+
   // console.log(useLoginQuery());
   // console.log(data);
 
@@ -57,11 +60,8 @@ export const LoginForm = () => {
       margin: '0 auto',
       marginTop: '150px',
     }}>
-      <TextField
-        {...register('email')}
-        errorMessage={errors?.email?.message}
-        label={'Email'}
-        placeholder={'email'}
+      <FormTextField control={control} name={'email'}
+
       />
       <TextField {...register('password')}
         label={'Password'}
@@ -69,7 +69,7 @@ export const LoginForm = () => {
         name={'password'}
         errorMessage={errors?.password?.message}
       />
-      <Button type={'submit'}>Submit</Button>
+      <Button >Submit</Button>
     </form >
   )
 }

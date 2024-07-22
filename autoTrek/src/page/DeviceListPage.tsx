@@ -14,6 +14,8 @@ export const DeviceListPage = () => {
   if (isError) {
     return <div>Error: {JSON.stringify(isError)}</div>
   }
+
+
   return (
     <>
       <h2>
